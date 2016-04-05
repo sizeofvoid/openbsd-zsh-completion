@@ -1,0 +1,24 @@
+#compdef doas
+#  ___(_)_______  ___  / _|_   _____ (_) __| |  ___  _ __ __ _
+# / __| |_  / _ \/ _ \| |_\ \ / / _ \| |/ _` | / _ \| '__/ _` |
+# \__ \ |/ /  __/ (_) |  _|\ V / (_) | | (_| || (_) | | | (_| |
+# |___/_/___\___|\___/|_|   \_/ \___/|_|\__,_(_)___/|_|  \__, |
+#                                                Dotfils |___/
+#
+# Copyright (c) 2016, Rafael Sadowski <rafael |AT| sizeofvoid.org>
+# Licensed under the ISC license.
+
+local -a args
+
+args=(
+  '-C[parse and check the configuration file config]:file:_files'
+  '-a[authentication style]:file:_files'
+  '-n[disbale interactive mode]'
+  '-s[execute the shell from SHELL or /etc/passwd]'
+  '-u[execute the command as user]:user:_users'
+  '(-)1:command: _command_names -e'
+  '*::arguments: _normal'
+)
+
+_arguments -s -S $args
+
