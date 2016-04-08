@@ -8,8 +8,48 @@
 # Copyright (c) 2016, Rafael Sadowski <rafael |AT| sizeofvoid.org>
 # Licensed under the ISC license.
 #
+
+_supported_platforms ()
+{
+	_arch_list -a =(
+		'alpha: Digital Alpha-based systems'
+		'amd64: AMD64-based systems'
+		'armish: ARM-based appliances (by Thecus, IO-DATA, and others)'
+		'hppa: Hewlett-Packard Precision Architecture (PA-RISC) systems'
+		'i386:  Standard PC and clones based on the Intel i386 architecture and compatible processors'
+		'landisk: IO-DATA Landisk systems (such as USL-5P) based on the SH4 cpu'
+		'loongson: Loongson 2E- and 2F-based systems, such as the Lemote Fuloong and Yeeloong, Gdium Liberty, etc.:'
+		'luna88k: Omron LUNA-88K and LUNA-88K2 workstations'
+		'macppc: Apple New World PowerPC-based machines, from the iMac onwards'
+		'octeon: Cavium Octeon-based MIPS64 systems'
+		'sgi: SGI MIPS-based workstations'
+		'socppc: Freescale PowerPC SoC-based machines'
+		'sparc: Sun sun4, sun4c, sun4e and sun4m class SPARC systems'
+		'sparc64: Sun UltraSPARC and Fujitsu SPARC64 systems'
+		'zaurus: Sharp Zaurus C3x00 PDAs'
+	)
+
+	_describe 'arch' _arch_list
+}
+
 _pkg_add_completion()
 {
+	_arguments -s -C \
+		'-a[automated package installation]' \
+		'-c[while replacing packages, delete extra configuration file in the old package]' \
+		'-I[force non-interactive mode]' \
+		'-i[force interactive mode]' \
+		'-m[always display the progress meter]' \
+		'-n[dont actually install a package, just report the steps]' \
+		'-q[replace package quickly]' \
+		'-r[replace existing packages]' \
+		'-s[dont actually install packages, skip as many steps as needed and report only the disk size changes that would happen]' \
+		'-U[update dependencies if required before installing the new package(s)]' \
+		'-u[update the given installed pkgname(s), and anything it depends upon]' \
+		'-v[turn on verbose output]' \
+		'-x[disable progress meter]' \
+		'-z[fuzzy package addition]' \
+		'-A[arch]_supported_platforms' \
 }
 
 _pkg_create_completion()
