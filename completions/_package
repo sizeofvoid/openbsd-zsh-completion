@@ -1,0 +1,53 @@
+#compdef pkg_add pkg_create pkg_info pkg_sign pkg_check pkg_delete pkg_mklocatedb
+#  ___(_)_______  ___  / _|_   _____ (_) __| |  ___  _ __ __ _
+# / __| |_  / _ \/ _ \| |_\ \ / / _ \| |/ _` | / _ \| '__/ _` |
+# \__ \ |/ /  __/ (_) |  _|\ V / (_) | | (_| || (_) | | | (_| |
+# |___/_/___\___|\___/|_|   \_/ \___/|_|\__,_(_)___/|_|  \__, |
+#                                                Dotfils |___/
+#
+# Copyright (c) 2016, Rafael Sadowski <rafael |AT| sizeofvoid.org>
+# Licensed under the ISC license.
+#
+_pkg_add_completion()
+{
+}
+
+_pkg_create_completion()
+{
+}
+
+_pkg_info_completion()
+{
+}
+
+_pkg_sign_completion()
+{
+}
+
+_pkg_check_completion()
+{
+}
+
+_pkg_delete_completion()
+{
+}
+
+_pkg_mklocatedb_completion()
+{
+}
+
+_package() {
+    local state line curcontext="$curcontext"
+    case $service in
+	pkg_add) _pkg_add_completion;;
+	pkg_create) _pkg_create_completion;;
+	pkg_info) _pkg_info_completion;;
+	pkg_sign) _pkg_sign_completion;;
+	pkg_check) _pkg_check_completion;;
+	pkg_delete) _pkg_delete_completion;;
+	pkg_mklocatedb) _pkg_mklocatedb_completion;;
+        *) _message "Err not my business";;
+    esac
+}
+
+_package "$@"
