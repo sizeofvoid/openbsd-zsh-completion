@@ -1,0 +1,89 @@
+#compdef rcctl
+#  ___(_)_______  ___  / _|_   _____ (_) __| |  ___  _ __ __ _
+# / __| |_  / _ \/ _ \| |_\ \ / / _ \| |/ _` | / _ \| '__/ _` |
+# \__ \ |/ /  __/ (_) |  _|\ V / (_) | | (_| || (_) | | | (_| |
+# |___/_/___\___|\___/|_|   \_/ \___/|_|\__,_(_)___/|_|  \__, |
+#                                                Dotfils |___/
+#
+# Copyright (c) 2016, Rafael Sadowski <rafael |AT| sizeofvoid.org>
+# Licensed under the ISC license.
+
+_services()
+{
+	local -a _service_list
+	for param in "$@"; do
+		for service in `rcctl ls $param`; do
+			_service_list+=${service%% *}
+		done
+	done
+	_describe 'service list' _service_list
+}
+
+_rcctl_vars(){
+	local -a _vars
+	_vars=(
+	'flags: additional arguments to call the daemon with.'
+	'user: user to run the daemon as, using su(1).'
+	'timeout: maximum time in seconds to wait for the start.'
+	'class:  daemon class configured in login.conf(5) (RO)'
+	)
+	_describe 'rcctl vars' _vars
+}
+
+_services_vars()
+{
+}
+
+_rcctl_ls(){
+	local -a _ls_args
+	_ls_args=(
+	'all: all services and daemons'
+	'faulty: enabled but stopped daemons'
+	'off: disabled services and daemons'
+	'on: enabled services and daemons'
+	'started: running daemons'
+	'stopped: stopped daemons'
+	)
+	_describe 'rcctl lsargs' _ls_args
+}
+
+_rcctl()
+{
+	rcctl_cmds()
+	{
+		local -a _rcctl_main_cmds
+		_rcctl_main_cmds=(
+		'disable: alias for set service|daemon status off.'
+		'start: start the service|daemon, if not already running.'
+		'stop: stop the service|daemon.'
+		'reload: tell the service|daemon to reload its configuration.'
+		'restart: perform a stop, then a start the service|daemon.'
+		'check: return 0 if the service|daemon is running or 1 if it is not.'
+		'enable: alias for set service|daemon status on.'
+		'order: move the specified package daemons to the beginning of pkg_scripts.'
+		'ls: display a list of services and daemons matching lsarg.'
+		'getdef: like get but returns the default values.'
+		'get: display the value.'
+		'set: set the variable daemon_variable.'
+		)
+		_describe 'rcctl commands' _rcctl_main_cmds
+	}
+	case $words[$((CURRENT - 1))] in
+		disable) _services on;;
+		enable) _services off;;
+		order) _services on;;
+		start) _services stopped;;
+		stop) _services started;;
+		reload) _services started;;
+		set) _services started;;
+		get) _services_vars;; # TODO
+		getdef) _services started;;
+		ls) _rcctl_ls;;
+	esac
+
+	_arguments -C -S -A "-*" \
+		'-df[Run the rc.d(8) daemon scripts with the action argument]' \
+		'::rcctl commands:rcctl_cmds' \
+}
+
+_rcctl "$@"
