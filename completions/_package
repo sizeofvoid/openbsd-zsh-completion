@@ -32,8 +32,13 @@ _supported_platforms()
 	_describe 'arch list' _arch_list
 }
 
+
 _pkg_add_completion()
 {
+	_distribution_typs=('cdrom' 'ftp')
+	_keywords=('allversions' 'arch' 'dontmerge' 'donttie' 'downgrade' 'FW_UPDATE'
+		'installed' 'libdepends' 'nonroot' 'nosig' 'paranoid' 'repair'
+		'scripts' 'SIGNER' 'unsigned' 'updatedepends')
 	_arguments -s -C \
 		'-a[automated package installation]' \
 		'-c[while replacing packages, delete extra configuration file in the old package]' \
@@ -50,6 +55,11 @@ _pkg_add_completion()
 		'-x[disable progress meter]' \
 		'-z[fuzzy package addition]' \
 		'-A[arch]:arch:_supported_platforms' \
+		'-B[set pkg-destdir as the prefix to prepend to any object extracted from the package]:pkgdistdir:_files -/' \
+		'-L[set localbase]:localbase:_files -/' \
+		'-l[installs packages from the raw output of pkg_info(1)]:file:_files' \
+		'-P[check permissions for distribution]:tpye:((${(q)_distribution_typs}))' \
+		'-D[force installation of the package]:keyword:((${(q)_keywords}))' \
 }
 
 _pkg_create_completion()
