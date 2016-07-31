@@ -10,9 +10,12 @@
 
 _services()
 {
-	local -a _service_list
+	local -a _service_list _run_as_root_cmd
+	if [ $UID -ne 0 ]; then
+		_run_as_root_cmd="doas"
+	fi
 	for param in "$@"; do
-		for service in `rcctl ls $param`; do
+		for service in `$_run_as_root_cmd rcctl ls $param`; do
 			_service_list+=${service%% *}
 		done
 	done
