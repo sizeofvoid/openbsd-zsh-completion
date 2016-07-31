@@ -13,6 +13,7 @@ _supported_platforms()
 {
 	_arch_list=(
 		'alpha: Digital Alpha-based systems'
+		'armv7: Various ARMv7 based systems.'
 		'amd64: AMD64-based systems'
 		'armish: ARM-based appliances (by Thecus, IO-DATA, and others)'
 		'hppa: Hewlett-Packard Precision Architecture (PA-RISC) systems'
