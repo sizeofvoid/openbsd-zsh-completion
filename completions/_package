@@ -81,20 +81,22 @@ _pkg_check_completion()
 
 _pkg_delete_completion()
 {
+	_keywords=('baddepend' 'dependencies' 'nonroot' 'scripts')
 	_arguments -s -C \
 		'-a[Delete unused dependencies]' \
 		'-c[Delete extra configuration files (@extra file)]' \
 		'-I[Force non-interactive mode]' \
 		'-i[Force interactive mode]' \
-		'-m[]' \
-		'-n[]' \
+		'-m[Always display the progress meter]' \
+		'-n[Dont actually deinstall a package, just report the steps that would be taken if it were]' \
 		'-q[Delete package quickly]' \
 		'-s[Dont deinstall package, only report the disk size changes]' \
 		'-v[Turn on verbose output]' \
 		'-X[Delete everything]' \
 		'-x[Disable progress meter]' \
-		'-B[]' \
-		'-D[]' \
+		'-B[pkg-destdir]directory:_files -/' \
+		'-D[Force removal of the package]:keyword:((${(q)_keywords}))' \
+	# XXX list all installed packages
 }
 
 _pkg_mklocatedb_completion()
