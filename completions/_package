@@ -90,6 +90,12 @@ _pkg_info_completion()
 		'-U[Show the deinstall-message file (if any) for each package]' \
 		'-v[Turn on verbose output]' \
 		'-z[Fuzzy listing option, often used together with -m]' \
+		# XXX todo
+		'-E[filename]' \
+		'-e[pkg-name]' \
+		'-l[Prefix each information category header (see -q) shown with str]' \
+		'-Q[Show all packages in $PKG_PATH which match the given query]' \
+		'-r[Check a list for a given pkgspec]' \
 }
 
 _pkg_sign_completion()
