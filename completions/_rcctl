@@ -41,7 +41,7 @@ _rcctl_ls(){
 	local -a _ls_args
 	_ls_args=(
 	'all: all services and daemons'
-	'faulty: enabled but stopped daemons'
+	'failed: enabled but stopped daemons'
 	'off: disabled services and daemons'
 	'on: enabled services and daemons'
 	'started: running daemons'
