@@ -69,6 +69,27 @@ _pkg_create_completion()
 
 _pkg_info_completion()
 {
+	_arguments -s -C \
+		'-A[Show information for all currently installed packages, including internal packages]' \
+		'-a[how information for all currently installed packages]' \
+		'-C[Show certificate information for signed packages]' \
+		'-c[Show the one-line comment field for each package]' \
+		'-d[Show the long-description field for each package]' \
+		'-f[Show the packing-list instructions for each package]' \
+		'-I[Show the index entry for each package]' \
+		'-K[Prefix file names with category keyword (e.g., @file, @lib)]' \
+		'-L[Show the files within each package]' \
+		'-M[Show the install-message file (if any) for each package]' \
+		'-m[Only show packages tagged as manual installations]' \
+		'-P[Show the pkgpath(7) for each package]' \
+		'-q[Be “quiet”]' \
+		'-R[Show which packages require a given package]' \
+		'-S[Show the update signature for each package]' \
+		'-s[Show an estimate of the total size of each package]' \
+		'-t[Show packages which are not required by any other packages]' \
+		'-U[Show the deinstall-message file (if any) for each package]' \
+		'-v[Turn on verbose output]' \
+		'-z[Fuzzy listing option, often used together with -m]' \
 }
 
 _pkg_sign_completion()
